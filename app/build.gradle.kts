@@ -13,7 +13,7 @@ android {
     buildToolsVersion = "29.0.3"
 
     defaultConfig {
-        applicationId = "com.example.hiltplayground"
+        applicationId = "com.example.studio.forface.hiltplayground"
         minSdkVersion(23)
         targetSdkVersion(29)
         versionCode = 1
@@ -28,14 +28,24 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }
 
 dependencies {
     implementation(
+        project(":domain"),
+
         `kotlin-jdk7`,
 
         `appcompat`,
         `android-ktx`,
+        `fragment`,
+        `lifecycle-liveData`,
         `lifecycle-viewModel`,
 
         `hilt-android`,
