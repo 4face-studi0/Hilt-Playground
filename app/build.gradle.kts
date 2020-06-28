@@ -20,6 +20,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                // To disable checking for the InstallIn annotation in some modules, you need to enable the compiler
+                // option in your build.gradle file like this:
+                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+            }
+        }
     }
 
     buildTypes {
@@ -34,6 +42,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+
 }
 
 dependencies {
@@ -54,9 +63,11 @@ dependencies {
         `hilt-androidx-workManager`
     )
     kapt(
+        `assistedInject-processor-dagger`,
         `hilt-android-compiler`,
         `hilt-androidx-compiler`
     )
+    compileOnly(`assistedInject-annotations-dagger`)
 
     testImplementation(`hilt-android-testing`)
 
